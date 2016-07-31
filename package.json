@@ -24,6 +24,8 @@
     "later": "^1.2.0",
     "lodash": "4.14.1",
     "node-fetch": "^1.5.3",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
     "rethinkdbdash": "^2.3.19",
     "uuid": "^2.0.2"
   },

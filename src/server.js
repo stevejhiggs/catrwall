@@ -1,6 +1,7 @@
 const express = require('express');
 const horizon = require('@horizon/server');
 const path = require('path');
+const later = require('later');
 const config = require('./config');
 const cats = require('./tasks/getCats');
 
@@ -22,6 +23,7 @@ app.use('/', (req, res) => {
 });
 
 const run = () => {
+  console.log('refreshing cats');
   const port = process.env.PORT || config.port;
 
   const httpServer = app.listen(port, (err) => {
@@ -46,9 +48,14 @@ const run = () => {
     }
   });
 
-  cats.updateCats().catch(ex => {
+  later.setInterval(() => {
+    cats.updateCats().catch(ex => {
       console.log(ex);
-  })
+    });
+  }, later.parse.text('every 10 seconds'));
+
+  
 };
 
 run();
+
