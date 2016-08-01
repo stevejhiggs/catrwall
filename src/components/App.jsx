@@ -35,7 +35,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  hz: React.PropTypes.object
+  hz: React.PropTypes.function
 };
 
 export default App;

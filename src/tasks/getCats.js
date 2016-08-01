@@ -2,13 +2,17 @@ const fetch = require('node-fetch');
 const db = require('../db');
 const uuid = require('uuid');
 
+const srcRegex = /<img src="(.*)">/gi;
+
 const getCatsFromApi = (count) => {
     return new Promise((resolve, reject) => {
-        fetch(`http://thecatapi.com/api/images/get?size=small&results_per_page=${count}&format=html`)
+        fetch(`http://thecatapi.com/api/images/get?size=large&type=gif&results_per_page=${count}&format=html`)
         .then(res => {
             return res.text();
         }).then(body => {
-            resolve(body.match(/<img src="(.*)">/gi));
+          const srcs = [];
+          while ( ( match = srcRegex.exec( body ) ) && srcs.push( match[1] ) ) {};
+          resolve(srcs);
         }).catch(ex => {
             reject(ex);
         });
