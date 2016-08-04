@@ -1,5 +1,6 @@
 import React from 'react';
 import NoCats from './NoCats';
+import FlipMove from 'react-flip-move';
 
 // as this component does not have state or actions it can be written as a pure function
 const KittyGrid = (props) => {
@@ -14,10 +15,14 @@ const KittyGrid = (props) => {
 
     for (let i = 1; i < kittys.length; i = i + 1) {
       rows.push(
-        <div className="kitty" key={kittys[i].id} onClick={() => onKittyClick(kittys[i].id)}>
+        <li
+          className={`kitty num${i}`}
+          key={kittys[i].id}
+          onClick={() => onKittyClick(kittys[i].id)}
+        >
           <img src={kittys[i].src} alt="cat" />
           <h3 className="score">{kittys[i].votes}</h3>
-        </div>
+        </li>
       );
     }
 
@@ -25,15 +30,17 @@ const KittyGrid = (props) => {
   };
 
   return (
-    <div>
-      <div id="featuredKitty" key={kittys[0].id} onClick={() => onKittyClick(kittys[0].id)}>
-        <img src={kittys[0].src} alt="cat" />
-        <h3 className="score">{kittys[0].votes}</h3>
-      </div>
-      <div className="catGrid">
+    <ul className="catGrid ">
+      <FlipMove
+        easing="cubic-bezier(0.25, 0.1, 0.25, 1.0)"
+        staggerDelayBy={250}
+        staggerDurationBy={50}
+        enterAnimation="fade"
+        leaveAnimation="fade"
+      >
         {kittyNodes()}
-      </div>
-    </div>
+      </FlipMove>
+    </ul>
   );
 };
 
