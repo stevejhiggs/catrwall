@@ -37,9 +37,8 @@ class App extends React.Component {
 
     return (
       <div>
-        <div className="page-header">
-          <h1>All the cats...but which is best?</h1>
-        </div>
+        <h3>All the cats...but which is best?</h3>
+        <img id="crown" src="/crown.png" alt="crown" />
         <Grid kittys={this.state.kittys} onKittyClick={onKittyClick} />
       </div>
     );

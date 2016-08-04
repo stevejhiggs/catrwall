@@ -1,38 +1,39 @@
 import React from 'react';
-import { Grid, Row, Col, Thumbnail } from 'react-bootstrap';
+import NoCats from './NoCats';
 
 // as this component does not have state or actions it can be written as a pure function
 const KittyGrid = (props) => {
   const { kittys, onKittyClick } = props;
 
+  if (!kittys.length) {
+    return <NoCats />;
+  }
+
   const kittyNodes = () => {
     const rows = [];
-    for (let i = 0; i < kittys.length - 2; i = i + 2) {
-      rows.push(<Row key={i}>
-        <Col sm={6} md={6} lg={6} key={kittys[i].id}>
-          <Thumbnail src={kittys[i].src} alt="cat" onClick={() => onKittyClick(kittys[i].id)} >
-            <h3>{kittys[i].votes}</h3>
-          </Thumbnail>
-        </Col>
-        <Col sm={6} md={6} lg={6} key={kittys[i + 1].id}>
-          <Thumbnail
-            src={kittys[i + 1].src}
-            alt="cat"
-            onClick={() => onKittyClick(kittys[i + 1].id)}
-          >
-            <h3>{kittys[i + 1].votes}</h3>
-          </Thumbnail>
-        </Col>
-      </Row>);
+
+    for (let i = 1; i < kittys.length; i = i + 1) {
+      rows.push(
+        <div className="kitty" key={kittys[i].id} onClick={() => onKittyClick(kittys[i].id)}>
+          <img src={kittys[i].src} alt="cat" />
+          <h3 className="score">{kittys[i].votes}</h3>
+        </div>
+      );
     }
 
     return rows;
   };
 
   return (
-    <Grid fluid className="catGrid">
-      {kittyNodes()}
-    </Grid>
+    <div>
+      <div id="featuredKitty" key={kittys[0].id} onClick={() => onKittyClick(kittys[0].id)}>
+        <img src={kittys[0].src} alt="cat" />
+        <h3 className="score">{kittys[0].votes}</h3>
+      </div>
+      <div className="catGrid">
+        {kittyNodes()}
+      </div>
+    </div>
   );
 };
 
