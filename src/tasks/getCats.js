@@ -32,7 +32,8 @@ const recreateCatsInDb = (catImages) => {
             return {
                 id: uuid.v4(),
                 src: catImage,
-                votes: 0
+                votes: 0,
+                $hz_v$: -1 // hack to fix bug, fixed in upcoming version of horizon
             }
         });
 

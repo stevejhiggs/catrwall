@@ -6,11 +6,11 @@ class App extends React.Component {
     super(props);
     this.state = { kittys: [] };
     this.hz = props.hz;
+    this.cats = this.hz('cats');
   }
 
   componentDidMount() {
-    const cats = this.hz('cats');
-    cats.order('votes').watch().subscribe(
+    this.cats.order('votes').watch().subscribe(
       (items) => {
         this.setState({ kittys: items });
       },
@@ -23,12 +23,23 @@ class App extends React.Component {
   }
 
   render() {
+    const onKittyClick = (id) => {
+      const cats = this.cats;
+      console.log(id);
+      cats.find(id).fetch().subscribe(msg => {
+        this.cats.update({
+          id: msg.id,
+          votes: msg.votes + 1
+        });
+      });
+    };
+
     return (
       <div>
         <div className="page-header">
           <h1>All the cats...but which is best?</h1>
         </div>
-        <Grid kittys={this.state.kittys} />
+        <Grid kittys={this.state.kittys} onKittyClick={onKittyClick} />
       </div>
     );
   }

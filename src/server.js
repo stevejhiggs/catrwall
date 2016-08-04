@@ -7,21 +7,8 @@ const cats = require('./tasks/getCats');
 
 const app = express();
 
-app.use('/static', express.static(path.join(process.cwd(), '.build')));
-
-app.use('/', (req, res) => {
-  res.status(200).send(`<!doctype html>
-    <html>
-      <head>
-        <title>omg cats!</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-      </head>
-      <body>
-        <div id='root'></div>
-        <script src="/static/client.js"></script>
-      </body>
-    </html>`);
-});
+app.use('/build', express.static(path.join(process.cwd(), '.build')));
+app.use('/', express.static(path.join(process.cwd(), 'public')));
 
 const run = () => {
   console.log('refreshing cats');
@@ -53,7 +40,7 @@ const run = () => {
     cats.updateCats().catch(ex => {
       console.log(ex);
     });
-  }, later.parse.text('every 10 seconds'));
+  }, later.parse.text('every 30 seconds'));
 
   
 };
