@@ -10,9 +10,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.cats.order('votes').watch().subscribe(
+    this.cats.watch().subscribe(
       (items) => {
-        this.setState({ kittys: items });
+        const sortedCats = items.sort((a, b) => b.votes - a.votes);
+        this.setState({ kittys: sortedCats });
       },
       // If an error occurs, this function
       //  will execute with the `err` message
