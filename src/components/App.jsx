@@ -38,6 +38,7 @@ class App extends React.Component {
     return (
       <div>
         <h3>All the cats...but which is best?</h3>
+        <div>(click to vote)</div>
         <img id="crown" src="/crown.png" alt="crown" />
         <Grid kittys={this.state.kittys} onKittyClick={onKittyClick} />
       </div>
