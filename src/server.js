@@ -40,7 +40,7 @@ const run = () => {
     cats.updateCats().catch(ex => {
       console.log(ex);
     });
-  }, later.parse.text('every 30 seconds'));
+  }, later.parse.text('every 45 seconds'));
 
   
 };

@@ -13,16 +13,16 @@ const KittyGrid = (props) => {
   const kittyNodes = () => {
     const rows = [];
 
-    for (let i = 1; i < kittys.length; i = i + 1) {
+    for (let i = 0; i < kittys.length; i = i + 1) {
       rows.push(
-        <li
+        <div
           className={`kitty num${i}`}
           key={kittys[i].id}
           onClick={() => onKittyClick(kittys[i].id)}
         >
           <img src={kittys[i].src} alt="cat" />
           <h3 className="score">{kittys[i].votes}</h3>
-        </li>
+        </div>
       );
     }
 
@@ -30,17 +30,17 @@ const KittyGrid = (props) => {
   };
 
   return (
-    <ul className="catGrid ">
-      <FlipMove
-        easing="cubic-bezier(0.25, 0.1, 0.25, 1.0)"
-        staggerDelayBy={250}
-        staggerDurationBy={50}
-        enterAnimation="fade"
-        leaveAnimation="fade"
-      >
-        {kittyNodes()}
-      </FlipMove>
-    </ul>
+    <FlipMove
+      easing="cubic-bezier(0.25, 0.1, 0.25, 1.0)"
+      staggerDelayBy={150}
+      staggerDurationBy={25}
+      enterAnimation="fade"
+      leaveAnimation="fade"
+      className="catGrid"
+      duration={300}
+    >
+      {kittyNodes()}
+    </FlipMove>
   );
 };
 
