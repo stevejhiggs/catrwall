@@ -22,22 +22,17 @@ const getCatsFromApi = (count) => {
 const recreateCatsInDb = (catImages) => {
     let catTable;
     // delete then recreate the cats
-    return db.r_internal.table('collections').get('cats').run()
-    .then(result => {
-        catTable = result.table;
-        return db.r.table(catTable).delete().run();
-    })
+    return db.table('cats').delete().run()
     .then(() => {
         const catDocs = catImages.map(catImage => {
             return {
                 id: uuid.v4(),
                 src: catImage,
-                votes: 0,
-                $hz_v$: -1 // hack to fix bug, fixed in upcoming version of horizon
+                votes: 0
             }
         });
 
-        return db.r.table(catTable).insert(catDocs).run();
+        return db.table('cats').insert(catDocs).run();
     });
 }
 

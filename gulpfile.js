@@ -6,7 +6,7 @@ es6Pipeline.registerBuildGulpTasks(
   gulp,
   {
     entryPoints: {
-      'client': __dirname + '/src/client.js'
+      'client': __dirname + '/src/client.jsx'
     },
     outputDir: __dirname + '/.build'
   }

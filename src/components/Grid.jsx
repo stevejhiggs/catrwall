@@ -1,6 +1,6 @@
 import React from 'react';
-import NoCats from './NoCats';
 import FlipMove from 'react-flip-move';
+import NoCats from './NoCats';
 
 // as this component does not have state or actions it can be written as a pure function
 const KittyGrid = (props) => {
@@ -13,7 +13,7 @@ const KittyGrid = (props) => {
   const kittyNodes = () => {
     const rows = [];
 
-    for (let i = 0; i < kittys.length; i = i + 1) {
+    for (let i = 0; i < kittys.length; i++) {
       rows.push(
         <div
           className={`kitty num${i}`}
