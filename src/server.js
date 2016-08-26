@@ -28,6 +28,7 @@ const run = () => {
     auto_create_collection: true,
     auto_create_index: true,
     project_name: 'cathorizon',
+    rdb_host: process.env.RETHINKHOST || 'localhost',
     permissions: false, // waiting for additions to permission system atm
     auth: {
       allow_anonymous: true,

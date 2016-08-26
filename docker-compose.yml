@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  rethink:
+    image: rethinkdb:latest #define the image to get
+    ports:
+      - "8080"
+      - "28015"
+      - "29015"
+  app:
+    build: .
+    command: npm start
+    image: app #assign a name to the built image
+    ports:
+      - "4000:4000"
+    links:
+      - rethink
+    environment:
+      - RETHINKHOST=rethink

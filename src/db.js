@@ -4,7 +4,7 @@ const config = {
     db: 'cathorizon',
     servers: [
     {
-      host: '127.0.0.1',
+      host: process.env.RETHINKHOST || 'localhost',
       port: 28015
     }
   ]
