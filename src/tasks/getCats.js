@@ -45,8 +45,15 @@ const recreateCatsInDb = (catImages) => {
 }
 
 const updateCats = () => {
+    console.log('updating cats')
     return getCatsFromApi(10)
-    .then(recreateCatsInDb);
+    .then(recreateCatsInDb)
+    .then(() => {
+      console.log('cats updated');
+    })
+    .catch(err => {
+      console.error(err);
+    });
 }
 
 module.exports = {
