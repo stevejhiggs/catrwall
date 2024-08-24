@@ -1,40 +1,15 @@
 {
-  "name": "cathorizon",
+  "name": "cathorizon-workspace",
   "version": "1.0.0",
+  "private": true,
   "description": "real time collaborative cat voting with horizon io",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stevejhiggs/catHorizon.git"
+    "start": "pnpm run -r start",
+    "build": "pnpm run -r build"
   },
   "author": "Steve Higgs",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/stevejhiggs/catHorizon/issues"
-  },
-  "homepage": "https://github.com/stevejhiggs/catHorizon#readme",
-  "dependencies": {
-    "@horizon/client": "^2.0.0",
-    "@horizon/server": "^2.0.0",
-    "express": "^4.14.0",
-    "gulp-nodemon": "^2.1.0",
-    "isomorphic-fetch": "^2.2.1",
-    "later": "^1.2.0",
-    "lodash": "4.15.0",
-    "node-fetch": "^1.6.0",
-    "react": "^15.3.1",
-    "react-bootstrap": "^0.30.3",
-    "react-dom": "^15.3.1",
-    "react-flip-move": "^2.4.2",
-    "rethinkdbdash": "^2.3.21",
-    "uuid": "^2.0.2"
-  },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-webpack-es6-pipeline": "^5.0.0"
-  }
+  },
+  "packageManager": "pnpm@9.8.0"
 }

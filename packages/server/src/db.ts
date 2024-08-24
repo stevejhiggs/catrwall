@@ -1,4 +1,4 @@
-const rethinkdbdash = require('rethinkdbdash');
+import rethinkdbdash from 'rethinkdbdash';
 
 const config = {
     db: 'cathorizon',
@@ -10,4 +10,4 @@ const config = {
   ]
 };
 
-module.exports = rethinkdbdash(config);
+export default rethinkdbdash(config);

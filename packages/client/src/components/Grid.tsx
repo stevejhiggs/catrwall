@@ -1,9 +1,19 @@
-import React from 'react';
 import FlipMove from 'react-flip-move';
 import NoCats from './NoCats';
 
+export interface Cat {
+  id: string;
+  src: string;
+  votes: number;
+}
+
+interface KittyGridProps {
+  kittys: Cat[];
+  onKittyClick: (id: string) => void;
+}
+
 // as this component does not have state or actions it can be written as a pure function
-const KittyGrid = (props) => {
+export const KittyGrid: React.FC<KittyGridProps> = (props) => {
   const { kittys, onKittyClick } = props;
 
   if (!kittys.length) {
@@ -19,6 +29,9 @@ const KittyGrid = (props) => {
           className={`kitty num${i}`}
           key={kittys[i].id}
           onClick={() => onKittyClick(kittys[i].id)}
+          onKeyDown={(e) => e.key === 'Enter' && onKittyClick(kittys[i].id)}
+          tabIndex={0}
+          role="button"
         >
           <img src={kittys[i].src} alt="cat" />
           <h3 className="score">{kittys[i].votes}</h3>
@@ -43,10 +56,3 @@ const KittyGrid = (props) => {
     </FlipMove>
   );
 };
-
-KittyGrid.propTypes = {
-  kittys: React.PropTypes.array.isRequired,
-  onKittyClick: React.PropTypes.func.isRequired
-};
-
-export default KittyGrid;
