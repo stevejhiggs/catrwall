@@ -15,6 +15,6 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "horizon.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
